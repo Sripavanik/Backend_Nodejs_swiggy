@@ -6,7 +6,7 @@ const firmRoutes=require('./routes/firmRoutes');
 const productRoutes=require('./routes/productRoutes');
 const path=require('path');
 const app=express();
-const PORT=4000;
+const PORT=process.env.PORT||4000;
 dotenv.config();
 const mongoose=require('mongoose');
 const productController = require('./controllers/productController');
@@ -17,7 +17,7 @@ app.listen(PORT,()=>{
     console.log(`Server started and running at ${PORT}`);
 })
 app.use(bodyParser.json());
-app.use('/home',(req,res)=>{
+app.use('/',(req,res)=>{
     res.send("<h1> Welcome to Restaurant club");
 })
 app.use('/vendor',vendorRoutes);
