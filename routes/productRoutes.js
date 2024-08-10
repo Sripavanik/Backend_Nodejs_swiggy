@@ -1,0 +1,16 @@
+const express = require('express');
+const productController = require('../controllers/productController');
+const router = express.Router();
+
+// Route to add a product with firmId as a parameter
+router.post('/add-product/:firmId', productController.addProduct);
+
+// Route to get products by firmId
+router.get('/:firmId/products', productController.getProductByFirm);
+router.get('/uploads/:imageName',(req,res)=>{
+    const imageName=req.params.imageName;
+    res.headersSent('content-type','image/jpeg');
+    res.sendFile(path.join(__dirname,'..','uploads',imageName));
+})
+router.delete('/:productId',productController.deleteProductById);
+module.exports = router;
